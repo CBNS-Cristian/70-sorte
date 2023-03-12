@@ -16,7 +16,7 @@
   height: 100vh;
 }
 
-.color-button {
+/*.color-button {
   width: 50px;
   height: 50px;
   margin: 10px;
@@ -24,15 +24,31 @@
   border: none;
   background-color: #f00;
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
+  transition: background-color 0.4s ease-in-out;
 }
+*/
+.color-button{
+    background-color: #312efc;
+    width: 6rem;
+    height: 4rem;
+    border-radius: 1.5rem;
+    border: 0;
+    color: white;
+    font-size: 2.7rem;
+    margin: 0.3rem;
+    cursor: pointer;
+    transition: background-color 0.4s ease-in-out;
+}   
+.color-button:hover{
+    background-color: #0e0c91;
 
+}
 </style>
 
 </head>
 <body>
 
-<div id="button-container">
+<!-- <div id="button-container">
   <button class="color-button">1</button>
   <button class="color-button">2</button>
   <button class="color-button">3</button>
@@ -41,7 +57,18 @@
   <button class="color-button">6</button>
   <button class="color-button">7</button>
 </div>
+ -->
+<audio class="sound">
+  <source src="drum.mp3" type="audio/mp3">
+  <source src="horse.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
 
+<audio class="victory">
+  <source src="victory.mp3" type="audio/mp3">
+  <source src="horse.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
 
 </body>
 </html>
@@ -51,13 +78,15 @@
     //let button = document.querySelector("button")innerHTML;
     //console.log(button)
 
-    // for(let i =1; i<=70;){
-    //     document.write(`<button class="button"> ${i++} </button> `);
-    // }
+    for(let i =1; i<=70;){
+        document.write(`<button class="color-button"> ${i++} </button> `);
+    }
 
 const buttons = document.querySelectorAll('.color-button');
-
+const sound = document.querySelector('.sound');
+const victory = document.querySelector('.victory');
 function randomButton() {
+    victory.play();
   const randomIndex = Math.floor(Math.random() * buttons.length);
   return buttons[randomIndex];
 }
@@ -67,7 +96,8 @@ function changeColor() {
   currentButton.style.backgroundColor = '#f00';
   let i = 0;
   const intervalId = setInterval(() => {
-    currentButton.style.backgroundColor = `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`;
+    sound.play();
+    currentButton.style.backgroundColor = `rgb(${Math.random() * 200}, ${Math.random() * 200}, ${Math.random() * 255})`;
     currentButton = buttons[++i % buttons.length];
   }, 100);
 
@@ -80,7 +110,7 @@ function changeColor() {
         button.style.backgroundColor = '#ccc';
       }
     });
-  }, 3000);
+  }, 9000);
 }
 
 buttons.forEach(button => {
